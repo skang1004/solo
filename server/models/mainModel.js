@@ -1,7 +1,8 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const MONGO_URI = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PW}@cluster0-9unqt.mongodb.net/test?retryWrites=true&w=majority`;
+const MONGO_URI =
+  "mongodb+srv://saejin:codesmithsolo@cluster0-9unqt.mongodb.net/test?retryWrites=true&w=majority";
 
 // creating connection to MongoDB collection
 mongoose
