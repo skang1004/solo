@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+
 import Spendings from "../components/Spendings.jsx";
 
 class MainContainer extends Component {
@@ -40,7 +41,14 @@ class MainContainer extends Component {
           <div>
             <h2>Today's Earnings</h2>
             <h3>${this.state.incomeToday}</h3>
-            <Link to={"/spendings"}>
+            <Link
+              to={{
+                pathname: "/spendings",
+                state: {
+                  income: this.state.incomeToday,
+                },
+              }}
+            >
               <button type="button">Go to Spendings</button>
             </Link>
           </div>

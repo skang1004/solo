@@ -27,6 +27,7 @@ const userSchema = new Schema({
 const itemSchema = new Schema({
   item: String,
   amount: Number,
+  income: Number,
 });
 
 const Item = mongoose.model("item", itemSchema);
