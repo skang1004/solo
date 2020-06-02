@@ -24,6 +24,13 @@ const userSchema = new Schema({
   },
 });
 
+const itemSchema = new Schema({
+  item: String,
+  amount: Number,
+});
+
+const Item = mongoose.model("item", itemSchema);
+
 // bcrypting passwords
 // userSchema.pre('save', function (next) {
 //     let user = this;
@@ -36,4 +43,5 @@ const User = mongoose.model("user", userSchema);
 
 module.exports = {
   User,
+  Item,
 };

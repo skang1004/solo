@@ -1,6 +1,7 @@
 const path = require("path");
 const express = require("express");
 const userController = require("./controllers/userController.js");
+const itemController = require("./controllers/itemController.js");
 
 const app = express();
 const PORT = 3000;
@@ -23,6 +24,10 @@ if ((process.env.NODE_ENV = "production")) {
     res.status(200).sendFile(path.resolve(__dirname, "../index.html"))
   );
 }
+
+app.post("/spendings", itemController.saveItem, (req, res) => {
+  res.status(200).json(res.locals.newItem);
+});
 
 app.get("/login", (req, res) => {
   res.render("../client/components/Login");

@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import Spendings from "../components/Spendings.jsx";
 
 class MainContainer extends Component {
   constructor(props) {
@@ -38,6 +40,9 @@ class MainContainer extends Component {
           <div>
             <h2>Today's Earnings</h2>
             <h3>${this.state.incomeToday}</h3>
+            <Link to={"/spendings"}>
+              <button type="button">Go to Spendings</button>
+            </Link>
           </div>
         ) : null}
       </div>
