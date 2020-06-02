@@ -1,5 +1,7 @@
 import React, { Component } from "react";
+import { Link, Switch, Route, BrowserRouter } from "react-router-dom";
 import SpentItem from "./SpentItem.jsx";
+import History from "./History.jsx";
 
 class Spendings extends Component {
   constructor(props) {
@@ -8,6 +10,7 @@ class Spendings extends Component {
       item: "",
       amount: 0,
       budget: this.props.location.state.income,
+      remainingBudget: this.props.location.state.income,
       items: [],
     };
     this.handleChange = this.handleChange.bind(this);
@@ -44,6 +47,7 @@ class Spendings extends Component {
       .then((data) => {
         const item_id = document.getElementById("item_id");
         const amount_id = document.getElementById("amount_id");
+        // resetting the input values to empty string for next item
         item_id.value = "";
         amount_id.value = "";
         // grab item and amount from response
@@ -53,22 +57,18 @@ class Spendings extends Component {
         const newItems = [...this.state.items];
         newItems.push({ item, amount });
 
-        // recalculate the budget
-        let newBudget = this.state.budget;
-        let totalSpent = amount;
-        newBudget = newBudget - totalSpent;
+        // recalculating the budget
+        let newBudget = this.state.remainingBudget;
+        newBudget = newBudget - amount;
         this.setState({
           items: newItems,
-          budget: newBudget,
+          remainingBudget: newBudget,
         });
       })
       .catch((err) => console.log("Fetch to /spendings error: Error: ", err));
   }
 
-  componentDidUpdate() {
-    const { income } = this.props.location.state;
-    console.log("income passed to spendings", income);
-  }
+  componentDidUpdate() {}
 
   render() {
     let spentItems = [];
@@ -102,6 +102,21 @@ class Spendings extends Component {
           </button>
         </form>
         {spentItems}
+        <div>
+          <h1>Remaining Budget: {this.state.remainingBudget}</h1>
+        </div>
+
+        <Link
+          to={{
+            pathname: `/history`,
+            state: {
+              remainingBudget: this.state.remainingBudget,
+              budget: this.state.budget,
+            },
+          }}
+        >
+          <button type="button">Record your spendings</button>
+        </Link>
       </div>
     );
   }

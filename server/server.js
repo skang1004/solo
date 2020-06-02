@@ -29,6 +29,10 @@ app.post("/spendings", itemController.saveItem, (req, res) => {
   res.status(200).json(res.locals.newItem);
 });
 
+app.get("/history", (req, res) => {
+  res.sendStatus(200);
+});
+
 app.get("/login", (req, res) => {
   res.render("../client/components/Login");
 });

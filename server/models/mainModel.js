@@ -30,7 +30,10 @@ const itemSchema = new Schema({
   income: Number,
 });
 
-const Item = mongoose.model("item", itemSchema);
+const budgetSchema = new Schema({
+  budget: Number,
+  date: Date,
+});
 
 // bcrypting passwords
 // userSchema.pre('save', function (next) {
@@ -40,9 +43,12 @@ const Item = mongoose.model("item", itemSchema);
 //     bcrypt.genSalt
 // })
 
+const Budget = mongoose.model("budget", budgetSchema);
 const User = mongoose.model("user", userSchema);
+const Item = mongoose.model("item", itemSchema);
 
 module.exports = {
   User,
   Item,
+  Budget,
 };
