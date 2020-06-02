@@ -10,14 +10,6 @@ import "./stylesheets/styles.css";
 const App = (props) => {
   return (
     <div>
-      {/* <Signup />
-      <Route exact path="/login">
-        <Redirect to="/login" />
-      </Route>
-      <label>
-        Already a User?
-        <button onClick={handleClick}>Login</button>
-      </label> */}
       <Main />
     </div>
   );
