@@ -48,9 +48,8 @@ class Spendings extends Component {
       .then((data) => {
         const item_id = document.getElementById("item_id");
         const amount_id = document.getElementById("amount_id");
-        const id =
-          // resetting the input values to empty string for next item
-          (item_id.value = "");
+        // resetting the input values to empty string for next item
+        item_id.value = "";
         amount_id.value = "";
         // grab item and amount from response
         const { item, amount } = data;
@@ -60,8 +59,12 @@ class Spendings extends Component {
         newItems.push({ item, amount });
 
         // recalculating the budget
-        let newBudget = this.state.remainingBudget;
-        newBudget = newBudget - amount;
+        const sum = newItems.reduce((acc, cur) => {
+          return (acc += cur.amount);
+        }, 0);
+        // console.log("sum ", sum);
+        let newBudget = this.state.budget - sum;
+        // newBudget = newBudget - amount;
         this.setState({
           items: newItems,
           remainingBudget: newBudget,
@@ -72,11 +75,16 @@ class Spendings extends Component {
 
   delete(id) {
     id.preventDefault();
-    console.log("id ", id.target.className.slice(4));
     id = id.target.className.slice(4);
     // const newItems = this.state.items.filter((el, i) => i != id)
+    const newItems = this.state.items.filter((el, i) => i != id);
+    const sum = newItems.reduce((acc, cur) => {
+      return (acc += cur.amount);
+    }, 0);
+    const newBudget = this.state.budget - sum;
     this.setState((prevState) => ({
-      items: prevState.items.filter((el, i) => i != id),
+      items: newItems,
+      remainingBudget: newBudget,
     }));
   }
 

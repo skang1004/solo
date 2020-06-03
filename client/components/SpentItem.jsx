@@ -20,12 +20,11 @@ class SpentItem extends Component {
   //     }).catch((err) => console.log("Error in delete to /spendings, ", err));
   //   }
   delete(id) {
-    id.target.className.slice(4);
+    // id.target.className.slice(4);
     this.props.delete(id);
   }
 
   render() {
-    console.log("props in spentItem", this.props);
     return (
       <div>
         <h3>Item: {this.props.item}</h3>
