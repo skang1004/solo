@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import PastBudgets from "./PastBudgets.jsx";
+import PastDates from "./PastDates.jsx";
 
 class History extends Component {
   constructor(props) {
@@ -39,8 +41,8 @@ class History extends Component {
     const dateArr = [];
     // console.log("state history", this.props.location.state.history);
     this.state.budgetHistory.forEach((el) => {
-      budgetArr.push(el.budget);
-      dateArr.push(el.date.toString());
+      budgetArr.push(<PastBudgets budgets={el.budget} />);
+      dateArr.push(<PastDates dates={el.date} />);
     });
     return (
       <div>
