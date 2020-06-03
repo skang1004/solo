@@ -10,6 +10,7 @@ module.exports = {
   mode: process.env.NODE_ENV,
   devServer: {
     publicPath: "/build",
+    historyApiFallback: true,
     hot: true,
     proxy: {
       "/": "http://localhost:3000",

@@ -14,6 +14,7 @@ budgetController.getHistory = (req, res, next) => {
       });
     }
     res.locals.history = budgetHistory;
+    console.log("res.locals.history", res.locals.history);
     return next();
   });
 };

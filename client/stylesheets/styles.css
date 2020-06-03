@@ -1,0 +1,65 @@
+body {
+  background-color: rgb(211, 211, 211);
+  text-decoration: none;
+}
+
+#header {
+  list-style: none;
+  color: #2b7de9;
+}
+
+.links {
+  text-decoration: none;
+  color: #2b7de9;
+  font-size: 22px;
+}
+
+.links:hover {
+  color: #2b7de9af;
+  text-decoration: underline;
+}
+
+.buttons {
+  background-color: #2b7de9;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  margin: 10px;
+  font-size: 16px;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  transition-duration: 0.4s;
+}
+
+.buttons:hover {
+  background-color: rgb(131, 184, 253);
+  cursor: pointer;
+}
+
+#income {
+  font-size: 24px;
+}
+
+.label {
+  font-size: 24px;
+}
+
+#date_budget {
+  display: flex;
+
+  /* background-color: red; */
+}
+
+#dateArray {
+  display: flex;
+  justify-content: left;
+  flex-direction: column;
+  /* background-color: aqua; */
+}
+
+#budgetArray {
+  display: flex;
+  flex-direction: column;
+  /* background-color: yellow; */
+}

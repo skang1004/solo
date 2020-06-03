@@ -1,55 +1,33 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import PastBudgets from "./PastBudgets.jsx";
 import PastDates from "./PastDates.jsx";
 
 class History extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      budgetHistory: [],
-    };
   }
 
   componentDidMount() {
-    // before component mounts, post budget history into database
-    fetch("/history", {
-      method: "POST",
-      headers: {
-        "Content-Type": "Application/JSON",
-      },
-      body: JSON.stringify({
-        budget: this.props.location.state.remainingBudget,
-        date: Date.now(),
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        const hist = data.history.map((el) => {
-          return { budget: el.budget, date: el.date };
-        });
-        this.setState({
-          budgetHistory: hist,
-        });
-      })
-      .catch((err) => console.log("Error in post request to /history ", err));
+    this.props.updateBudgetHistory();
   }
 
   componentDidUpdate() {}
 
   render() {
-    const budgetArr = [];
     const dateArr = [];
-    // console.log("state history", this.props.location.state.history);
-    this.state.budgetHistory.forEach((el) => {
+    const budgetArr = [];
+    this.props.budgetHistory.forEach((el) => {
       budgetArr.push(<PastBudgets budgets={el.budget} />);
       dateArr.push(<PastDates dates={el.date} />);
     });
     return (
       <div>
-        <h3>Date</h3>
-        <ul>{dateArr}</ul>
-        <h3>Previous Remaining Budgets</h3>
-        <ul>{budgetArr}</ul>
+        <h3>Date || Remaining Budget</h3>
+        <div id="date_budget">
+          <ul id="dateArray">{dateArr}</ul>
+          <ul id="budgetArray">{budgetArr}</ul>
+        </div>
       </div>
     );
   }

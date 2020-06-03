@@ -3,6 +3,7 @@ const models = require("../models/mainModel.js");
 const itemController = {};
 
 itemController.saveItem = (req, res, next) => {
+  console.log("inside item save item");
   models.Item.create(req.body, (err, newItem) => {
     if (err) {
       return next({

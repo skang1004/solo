@@ -3,24 +3,9 @@ import React, { Component } from "react";
 class SpentItem extends Component {
   constructor(props) {
     super(props);
-    // this.deleteItem = this.deleteItem.bind(this);
   }
 
-  //   deleteItem(e) {
-  //     e.preventDefault();
-  //     const item = e.target.value;
-  //     const amount = e.target.id;
-  //     console.log(item, amount);
-  //     fetch("/spendings", {
-  //       method: "DELETE",
-  //       headers: {
-  //         "Content-Type": "Application/JSON",
-  //       },
-  //       body: JSON.stringify({ item, amount }),
-  //     }).catch((err) => console.log("Error in delete to /spendings, ", err));
-  //   }
   delete(id) {
-    // id.target.className.slice(4);
     this.props.delete(id);
   }
 
@@ -32,9 +17,9 @@ class SpentItem extends Component {
         <span>
           <button
             onClick={this.props.delete}
-            className={this.props.id}
+            className="buttons"
             value={this.props.item}
-            id={this.props.amount}
+            id={this.props.key1}
           >
             Delete
           </button>
