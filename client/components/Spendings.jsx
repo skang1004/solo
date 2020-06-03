@@ -112,6 +112,7 @@ class Spendings extends Component {
             state: {
               remainingBudget: this.state.remainingBudget,
               budget: this.state.budget,
+              history: [],
             },
           }}
         >

@@ -2,6 +2,7 @@ const path = require("path");
 const express = require("express");
 const userController = require("./controllers/userController.js");
 const itemController = require("./controllers/itemController.js");
+const budgetController = require("./controllers/budgetController.js");
 
 const app = express();
 const PORT = 3000;
@@ -29,8 +30,17 @@ app.post("/spendings", itemController.saveItem, (req, res) => {
   res.status(200).json(res.locals.newItem);
 });
 
-app.get("/history", (req, res) => {
-  res.sendStatus(200);
+app.post(
+  "/history",
+  budgetController.saveBudget,
+  budgetController.getHistory,
+  (req, res) => {
+    res.status(200).json({ history: res.locals.history });
+  }
+);
+
+app.get("/history", budgetController.getHistory, (req, res) => {
+  res.status(200).json({ history: res.locals.history });
 });
 
 app.get("/login", (req, res) => {
