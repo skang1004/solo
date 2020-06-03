@@ -15,6 +15,7 @@ class Spendings extends Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.delete = this.delete.bind(this);
   }
 
   handleChange(e) {
@@ -47,8 +48,9 @@ class Spendings extends Component {
       .then((data) => {
         const item_id = document.getElementById("item_id");
         const amount_id = document.getElementById("amount_id");
-        // resetting the input values to empty string for next item
-        item_id.value = "";
+        const id =
+          // resetting the input values to empty string for next item
+          (item_id.value = "");
         amount_id.value = "";
         // grab item and amount from response
         const { item, amount } = data;
@@ -68,13 +70,29 @@ class Spendings extends Component {
       .catch((err) => console.log("Fetch to /spendings error: Error: ", err));
   }
 
+  delete(id) {
+    id.preventDefault();
+    console.log("id ", id.target.className.slice(4));
+    id = id.target.className.slice(4);
+    // const newItems = this.state.items.filter((el, i) => i != id)
+    this.setState((prevState) => ({
+      items: prevState.items.filter((el, i) => i != id),
+    }));
+  }
+
   componentDidUpdate() {}
 
   render() {
     let spentItems = [];
     this.state.items.forEach((el, i) => {
       spentItems.push(
-        <SpentItem item={el.item} amount={el.amount} key={i} id={"item" + i} />
+        <SpentItem
+          delete={this.delete}
+          item={el.item}
+          amount={el.amount}
+          key={i}
+          id={"item" + i}
+        />
       );
     });
     return (
@@ -103,7 +121,7 @@ class Spendings extends Component {
         </form>
         {spentItems}
         <div>
-          <h1>Remaining Budget: {this.state.remainingBudget}</h1>
+          <h1>Remaining Budget: ${this.state.remainingBudget}</h1>
         </div>
 
         <Link

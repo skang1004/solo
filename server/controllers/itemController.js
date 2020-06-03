@@ -3,7 +3,6 @@ const models = require("../models/mainModel.js");
 const itemController = {};
 
 itemController.saveItem = (req, res, next) => {
-  console.log("req body inside saveItem", req.body);
   models.Item.create(req.body, (err, newItem) => {
     if (err) {
       return next({
@@ -15,6 +14,22 @@ itemController.saveItem = (req, res, next) => {
       });
     }
     res.locals.newItem = newItem;
+    return next();
+  });
+};
+
+itemController.deleteItem = (req, res, next) => {
+  console.log("req body inside deleteItem", req.body);
+  models.Item.deleteOne(req.body, (err, success) => {
+    if (err) {
+      return next({
+        log: "Error in ItemController.deleteItem",
+        status: 404,
+        message: {
+          err: `Check Item Controller: Error: ${err}`,
+        },
+      });
+    }
     return next();
   });
 };

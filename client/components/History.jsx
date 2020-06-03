@@ -46,7 +46,6 @@ class History extends Component {
     });
     return (
       <div>
-        <h1>inside history</h1>
         <h3>Date</h3>
         <ul>{dateArr}</ul>
         <h3>Previous Remaining Budgets</h3>

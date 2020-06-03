@@ -30,6 +30,10 @@ app.post("/spendings", itemController.saveItem, (req, res) => {
   res.status(200).json(res.locals.newItem);
 });
 
+app.delete("/spendings", itemController.deleteItem, (req, res) => {
+  res.sendStatus(200);
+});
+
 app.post(
   "/history",
   budgetController.saveBudget,
