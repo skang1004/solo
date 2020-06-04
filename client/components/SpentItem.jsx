@@ -12,9 +12,9 @@ class SpentItem extends Component {
   render() {
     return (
       <div className="itemBox">
-        <h3>Item: {this.props.item}</h3>
-        <h3>Amount: ${this.props.amount}</h3>
-        <span className="item_delete">
+        <h3 id="item_name">Item: {this.props.item}</h3>
+        <h3 id="item_amount">Amount: ${this.props.amount}</h3>
+        <span id="item_delete" className="item_delete">
           <button
             onClick={this.props.delete}
             className="buttons"

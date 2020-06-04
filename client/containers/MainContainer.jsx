@@ -20,23 +20,25 @@ class MainContainer extends Component {
   render() {
     console.log("this is props", this.props);
     return (
-      <div>
-        <label className="label">How much will you earn today? </label>
-        <input
-          id="income_id"
-          type="text"
-          onChange={this.props.handleText}
-        ></input>
-        <button
-          className="buttons"
-          type="submit"
-          onClick={this.props.handleClick}
-        >
-          Submit
-        </button>
+      <div className="mainContainerBox">
+        <div className="todayBlock">
+          <label className="label">How much will you earn today? </label>
+          <input
+            id="income_id"
+            type="text"
+            onChange={this.props.handleText}
+          ></input>
+          <button
+            className="buttons"
+            type="submit"
+            onClick={this.props.handleClick}
+          >
+            Submit
+          </button>
+        </div>
         {this.props.incomeToday !== 0 ? (
-          <div>
-            <h2>Today's Earnings</h2>
+          <div className="todayIncome">
+            <h2 id="todayEarning">Today's Earnings</h2>
             <h3 id="income">${this.props.incomeToday}</h3>
             <Link
               to={{

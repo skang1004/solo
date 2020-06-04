@@ -18,17 +18,24 @@ class History extends Component {
     const dateArr = [];
     const budgetArr = [];
     this.props.budgetHistory.forEach((el) => {
-      budgetArr.push(<PastBudgets budgets={el.budget} />);
-      dateArr.push(<PastDates dates={el.date} />);
+      budgetArr.push(
+        <PastBudgets className="allBudgets" budgets={el.budget} />
+      );
+      dateArr.push(<PastDates className="allBudgets" dates={el.date} />);
     });
     return (
       <div>
         <h3 className="date_and_budget">
-          <span>Date |</span> <span>| Remaining Budget</span>
+          <span id="dateTitle">Date </span>{" "}
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <span id="underBudget">
+            Under<span id="hyphen">|</span>
+          </span>
+          <span id="overBudget">Over</span>
         </h3>
         <div id="date_budget">
-          <ul id="dateArray">{dateArr}</ul>
-          <ul id="budgetArray">{budgetArr}</ul>
+          <ul id="dateArray">{dateArr} </ul>
+          <ul id="budgetArray"> {budgetArr}</ul>
         </div>
       </div>
     );

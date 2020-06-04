@@ -160,7 +160,7 @@ class App extends Component {
         <Router>
           <ul id="header">
             <li>
-              <Link to="/" className="links">
+              <Link to="" className="links">
                 Home
               </Link>
             </li>

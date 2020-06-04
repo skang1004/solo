@@ -49,11 +49,13 @@ class Spendings extends Component {
       );
     });
     return (
-      <div>
-        <div>
-          <h2>Today's budget: ${this.props.incomeToday}</h2>
+      <div className="spendingsBox">
+        <div className="budgetToday">
+          <h1>
+            Today's budget: <h1 id="budgetToday">${this.props.incomeToday}</h1>
+          </h1>
         </div>
-        <form type="submit">
+        <form className="itemInput" type="submit">
           <label className="label">What did you buy? </label>
           <input
             type="text"
@@ -76,14 +78,27 @@ class Spendings extends Component {
             Save your items!
           </button>
         </form>
-        {spentItems}
-        <div>
-          <h1>Remaining Budget: ${this.props.remainingBudget}</h1>
+        <div className="boughtItems">{spentItems}</div>
+        <div id="remainingBudget">
+          <h1>
+            Remaining Budget:{" "}
+            <h1
+              style={
+                this.props.remainingBudget >= 0
+                  ? { color: "green" }
+                  : { color: "red" }
+              }
+              id="budgetCalc"
+            >
+              ${this.props.remainingBudget}
+            </h1>
+          </h1>
         </div>
-
-        <button onClick={this.saveBudget} className="buttons" type="button">
-          Record your spendings
-        </button>
+        <div id="recordButton">
+          <button onClick={this.saveBudget} className="buttons" type="button">
+            Record your spendings
+          </button>
+        </div>
       </div>
     );
   }

@@ -1,7 +1,7 @@
 body {
   background-color: rgb(211, 211, 211);
   text-decoration: none;
-  font-family: "Comfortaa";
+  font-family: "Bebas Neue";
 }
 
 #header {
@@ -17,13 +17,32 @@ body {
 
 .itemBox {
   background-color: rgb(158, 158, 158);
-  max-width: 50%;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 
 .item_delete {
   display: flex;
+}
+
+.mainContainerBox {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  flex-wrap: wrap;
+}
+
+.todayBlock {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.todayIncome {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-content: center;
 }
 
 .links:hover {
@@ -42,6 +61,7 @@ body {
   text-align: center;
   text-decoration: none;
   transition-duration: 0.4s;
+  max-width: 20rem;
 }
 
 .buttons:hover {
@@ -49,24 +69,52 @@ body {
   cursor: pointer;
 }
 
+#todayEarning {
+  display: flex;
+  justify-content: center;
+}
+
 #income {
   font-size: 24px;
+  display: flex;
+  justify-content: center;
 }
 
 .label {
   font-size: 24px;
+  display: flex;
 }
 
 #date_budget {
   display: flex;
-
+  justify-content: center;
   /* background-color: red; */
+}
+
+#dateTitle {
+  color: rgb(59, 59, 59);
+}
+
+#hyphen {
+  color: rgb(59, 59, 59);
+}
+
+#underBudget {
+  color: rgb(63, 151, 63);
+}
+
+#overBudget {
+  color: rgb(170, 0, 0);
+}
+
+.allBudgets {
+  font-size: 27px;
 }
 
 .date_and_budget {
   font-size: 27px;
   display: flex;
-  margin-left: 35px;
+  justify-content: center;
 }
 
 #dateArray {
@@ -83,4 +131,61 @@ body {
   flex-direction: column;
   justify-content: left;
   padding-bottom: 15px;
+}
+
+.spendingsBox {
+  display: flex;
+  flex-direction: column;
+}
+
+.budgetToday {
+  display: flex;
+  justify-content: center;
+}
+
+.itemInput {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#item_id {
+  margin-right: 1rem;
+  display: flex;
+  height: 1rem;
+  margin-left: 1rem;
+}
+
+#amount_id {
+  margin-right: 1rem;
+  margin-left: 1rem;
+  display: flex;
+  height: 1rem;
+}
+
+#remainingBudget {
+  display: flex;
+  justify-content: center;
+}
+
+.boughtItems {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+
+#budgetCalc {
+  display: flex;
+  justify-content: center;
+}
+
+#budgetToday {
+  display: flex;
+  justify-content: center;
+}
+
+#recordButton {
+  display: flex;
+  justify-content: center;
 }
