@@ -126,7 +126,6 @@ class App extends Component {
     fetch("/history")
       .then((res) => res.json())
       .then((data) => {
-        console.log("data", data);
         const newBudget = data.history.map((el) => {
           const date = el.date.slice(0, 10);
           return { date, budget: el.budget };
@@ -142,7 +141,6 @@ class App extends Component {
     fetch("/history")
       .then((res) => res.json())
       .then((data) => {
-        console.log("data", data);
         const newBudget = data.history.map((el) => {
           const date = el.date.slice(0, 10);
           return { date, budget: el.budget };
@@ -156,11 +154,12 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <div id="appDiv">
+        <h2 id="welcome_statement">Hey {this.props.username}</h2>
         <Router>
           <ul id="header">
             <li>
-              <Link to="" className="links">
+              <Link to="/" className="links">
                 Home
               </Link>
             </li>

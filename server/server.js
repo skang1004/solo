@@ -57,8 +57,18 @@ app.get("/login", (req, res) => {
   res.render("../client/components/Login");
 });
 
+app.post("/login", userController.verifyUser, (req, res) => {
+  if (res.locals.verified) {
+    res
+      .status(200)
+      .json({ verified: res.locals.verified, user: res.locals.user });
+  }
+});
+
 app.post("/signup", userController.createUser, (req, res) => {
-  res.status(200).json(res.locals.newUser);
+  res
+    .status(200)
+    .json({ user: res.locals.newUser, verified: res.locals.verified });
 });
 
 // catch all route-handler for unknown requests

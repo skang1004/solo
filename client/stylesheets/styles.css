@@ -11,6 +11,7 @@ body {
 
 .links {
   text-decoration: none;
+
   color: #2b7de9;
   font-size: 22px;
 }
@@ -123,6 +124,18 @@ body {
   flex-direction: column;
   padding-bottom: 15px;
   font-size: 20px;
+}
+
+#welcome_statement {
+  display: flex;
+  margin-left: 1rem;
+}
+
+#appDiv {
+  /* display: flex; */
+}
+#signUpDiv {
+  margin-top: 20px;
 }
 
 #budgetArray {

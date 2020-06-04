@@ -18,7 +18,6 @@ class MainContainer extends Component {
   }
 
   render() {
-    console.log("this is props", this.props);
     return (
       <div className="mainContainerBox">
         <div className="todayBlock">
