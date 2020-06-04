@@ -28,7 +28,6 @@ class History extends Component {
         </h3>
         <div id="date_budget">
           <ul id="dateArray">{dateArr}</ul>
-
           <ul id="budgetArray">{budgetArr}</ul>
         </div>
       </div>

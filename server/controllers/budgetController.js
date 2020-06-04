@@ -15,6 +15,7 @@ budgetController.getHistory = (req, res, next) => {
     }
     res.locals.history = budgetHistory;
     console.log("res.locals.history", res.locals.history);
+    console.log("budgethistory", budgetHistory);
     return next();
   });
 };
@@ -31,6 +32,7 @@ budgetController.saveBudget = (req, res, next) => {
         },
       });
     }
+    console.log("saved budget", newBudget);
     return next();
   });
 };

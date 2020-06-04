@@ -41,9 +41,10 @@ app.delete("/spendings", itemController.deleteItem, (req, res) => {
 app.post(
   "/history",
   budgetController.saveBudget,
-  budgetController.getHistory,
+  // budgetController.getHistory,
   (req, res) => {
-    res.status(200).json({ history: res.locals.history });
+    // res.status(200).json({ history: res.locals.history });
+    res.sendStatus(200);
   }
 );
 

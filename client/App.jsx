@@ -26,6 +26,8 @@ class App extends Component {
       remainingBudget: 0,
       itemList: [],
       budgetHistory: [],
+      dateArr: [],
+      budgetArr: [],
     };
     this.handleText = this.handleText.bind(this);
     this.handleClick = this.handleClick.bind(this);
@@ -42,7 +44,6 @@ class App extends Component {
   }
 
   handleClick(e) {
-    console.log("clicked");
     e.preventDefault();
     let num = parseInt(this.state.incomeInput);
     this.setState({
@@ -53,7 +54,6 @@ class App extends Component {
   }
 
   handleChange(e) {
-    console.log(e.target.value);
     if (e.target.id === "item_id") {
       this.setState({
         item: e.target.value,
@@ -67,12 +67,10 @@ class App extends Component {
 
   postSpendings(e) {
     e.preventDefault();
-    console.log("inside postSpendings");
     const body = {
       item: this.state.item,
       amount: this.state.amount,
     };
-    console.log("body", body);
     fetch("/spendings", {
       method: "POST",
       headers: {
@@ -112,7 +110,6 @@ class App extends Component {
   delete(id) {
     id.preventDefault();
     id = id.target.id;
-    console.log("id", id);
     // const newItems = this.state.items.filter((el, i) => i != id)
     const newItems = this.state.itemList.filter((el, i) => i != id);
     const sum = newItems.reduce((acc, cur) => {
@@ -123,6 +120,22 @@ class App extends Component {
       itemList: newItems,
       remainingBudget: newBudget,
     });
+  }
+
+  componentDidMount() {
+    fetch("/history")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("data", data);
+        const newBudget = data.history.map((el) => {
+          const date = el.date.slice(0, 10);
+          return { date, budget: el.budget };
+        });
+        this.setState({
+          budgetHistory: newBudget,
+        });
+      })
+      .catch((err) => console.log(err));
   }
 
   updateBudgetHistory(e) {
@@ -151,16 +164,20 @@ class App extends Component {
                 Home
               </Link>
             </li>
-            <li>
-              <Link to="/spendings" className="links">
-                Spendings
-              </Link>
-            </li>
-            <li>
-              <Link to="/history" className="links">
-                Previous Budgets
-              </Link>
-            </li>
+            {this.state.incomeToday !== 0 ? (
+              <li>
+                <Link to="/spendings" className="links">
+                  Spendings
+                </Link>
+              </li>
+            ) : null}
+            {this.state.incomeToday !== 0 ? (
+              <li>
+                <Link to="/history" className="links">
+                  Previous Budgets
+                </Link>
+              </li>
+            ) : null}
           </ul>
           <Route
             exact
@@ -193,18 +210,22 @@ class App extends Component {
               />
             )}
           />
-          <Route
-            exact
-            path="/history"
-            render={(props) => (
-              <History
-                {...props}
-                updateBudgetHistory={this.updateBudgetHistory}
-                budgetHistory={this.state.budgetHistory}
-                remainingBudget={this.state.remainingBudget}
-              />
-            )}
-          />
+          {this.state.incomeToday !== 0 ? (
+            <Route
+              exact
+              path="/history"
+              render={(props) => (
+                <History
+                  {...props}
+                  updateBudgetHistory={this.updateBudgetHistory}
+                  budgetHistory={this.state.budgetHistory}
+                  remainingBudget={this.state.remainingBudget}
+                  budgetArr={this.state.budgetArr}
+                  dateArr={this.state.dateArr}
+                />
+              )}
+            />
+          ) : null}
         </Router>
       </div>
     );

@@ -6,12 +6,32 @@ import History from "./History.jsx";
 class Spendings extends Component {
   constructor(props) {
     super(props);
+    this.saveBudget = this.saveBudget.bind(this);
   }
 
   componentDidUpdate() {}
 
   postSpendings(e) {
     this.props.postSpendings(e);
+  }
+
+  saveBudget(e) {
+    e.preventDefault();
+    const body = {
+      date: Date.now(),
+      budget: this.props.remainingBudget,
+    };
+    fetch("/history", {
+      method: "POST",
+      headers: {
+        "Content-Type": "Application/JSON",
+      },
+      body: JSON.stringify(body),
+    }).then(() => {
+      alert(
+        `Saved your remaining budget! Check your previous budgets to find more`
+      );
+    });
   }
 
   render() {
@@ -61,15 +81,9 @@ class Spendings extends Component {
           <h1>Remaining Budget: ${this.props.remainingBudget}</h1>
         </div>
 
-        <Link
-          to={{
-            pathname: `/history`,
-          }}
-        >
-          <button className="buttons" type="button">
-            Record your spendings
-          </button>
-        </Link>
+        <button onClick={this.saveBudget} className="buttons" type="button">
+          Record your spendings
+        </button>
       </div>
     );
   }
