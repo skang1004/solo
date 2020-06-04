@@ -26,6 +26,7 @@ if ((process.env.NODE_ENV = "production")) {
   );
 }
 
+// if you have time to work on reload a page
 app.get("/spendings", (req, res) => {
   res.status(200);
 });
