@@ -11,10 +11,10 @@ class SpentItem extends Component {
 
   render() {
     return (
-      <div>
+      <div className="itemBox">
         <h3>Item: {this.props.item}</h3>
         <h3>Amount: ${this.props.amount}</h3>
-        <span>
+        <span className="item_delete">
           <button
             onClick={this.props.delete}
             className="buttons"

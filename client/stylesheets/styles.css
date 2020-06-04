@@ -15,6 +15,17 @@ body {
   font-size: 22px;
 }
 
+.itemBox {
+  background-color: rgb(158, 158, 158);
+  max-width: 50%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.item_delete {
+  display: flex;
+}
+
 .links:hover {
   color: #2b7de9af;
   text-decoration: underline;
