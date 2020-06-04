@@ -23,9 +23,12 @@ class History extends Component {
     });
     return (
       <div>
-        <h3>Date || Remaining Budget</h3>
+        <h3 className="date_and_budget">
+          <span>Date |</span> <span>| Remaining Budget</span>
+        </h3>
         <div id="date_budget">
           <ul id="dateArray">{dateArr}</ul>
+
           <ul id="budgetArray">{budgetArr}</ul>
         </div>
       </div>

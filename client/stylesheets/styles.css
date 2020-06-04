@@ -51,15 +51,24 @@ body {
   /* background-color: red; */
 }
 
+.date_and_budget {
+  font-size: 27px;
+  display: flex;
+  margin-left: 35px;
+}
+
 #dateArray {
   display: flex;
   justify-content: left;
   flex-direction: column;
-  /* background-color: aqua; */
+  padding-bottom: 15px;
+  font-size: 20px;
 }
 
 #budgetArray {
   display: flex;
+  font-size: 20px;
   flex-direction: column;
-  /* background-color: yellow; */
+  justify-content: left;
+  padding-bottom: 15px;
 }
