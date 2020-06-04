@@ -67,10 +67,12 @@ class App extends Component {
 
   postSpendings(e) {
     e.preventDefault();
+    console.log("inside postSpendings");
     const body = {
       item: this.state.item,
       amount: this.state.amount,
     };
+    console.log("body", body);
     fetch("/spendings", {
       method: "POST",
       headers: {

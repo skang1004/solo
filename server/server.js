@@ -26,6 +26,10 @@ if ((process.env.NODE_ENV = "production")) {
   );
 }
 
+app.get("/spendings", (req, res) => {
+  res.status(200);
+});
+
 app.post("/spendings", itemController.saveItem, (req, res) => {
   res.status(200).json(res.locals.newItem);
 });
