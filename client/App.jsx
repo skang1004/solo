@@ -1,26 +1,26 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import {
   Switch,
   BrowserRouter as Router,
   Route,
   Link,
   Redirect,
-} from "react-router-dom";
-import Login from "./components/Login.jsx";
-import Spendings from "./components/Spendings.jsx";
-import History from "./components/History.jsx";
-import Main from "./containers/MainContainer.jsx";
-import Axios from "axios";
+} from 'react-router-dom';
+import Login from './components/Login.jsx';
+import Spendings from './components/Spendings.jsx';
+import History from './components/History.jsx';
+import Main from './containers/MainContainer.jsx';
+import Axios from 'axios';
 
-import "./stylesheets/styles.css";
+import './stylesheets/styles.css';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      incomeInput: "",
+      incomeInput: '',
       incomeToday: 0,
-      item: "",
+      item: '',
       itemAmount: 0,
       budget: 0,
       remainingBudget: 0,
@@ -50,15 +50,15 @@ class App extends Component {
       incomeToday: num,
       remainingBudget: num,
     });
-    document.getElementById("income_id").value = "";
+    document.getElementById('income_id').value = '';
   }
 
   handleChange(e) {
-    if (e.target.id === "item_id") {
+    if (e.target.id === 'item_id') {
       this.setState({
         item: e.target.value,
       });
-    } else if (e.target.id === "amount_id") {
+    } else if (e.target.id === 'amount_id') {
       this.setState({
         amount: e.target.value,
       });
@@ -71,20 +71,20 @@ class App extends Component {
       item: this.state.item,
       amount: this.state.amount,
     };
-    fetch("/spendings", {
-      method: "POST",
+    fetch('/spendings', {
+      method: 'POST',
       headers: {
-        "Content-Type": "Application/JSON",
+        'Content-Type': 'Application/JSON',
       },
       body: JSON.stringify(body),
     })
       .then((res) => res.json())
       .then((data) => {
-        const item_id = document.getElementById("item_id");
-        const amount_id = document.getElementById("amount_id");
+        const item_id = document.getElementById('item_id');
+        const amount_id = document.getElementById('amount_id');
         // resetting the input values to empty string for next item
-        item_id.value = "";
-        amount_id.value = "";
+        item_id.value = '';
+        amount_id.value = '';
         // grab item and amount from response
         const { item, amount } = data;
 
@@ -104,7 +104,7 @@ class App extends Component {
           remainingBudget: newBudget,
         });
       })
-      .catch((err) => console.log("Fetch to /spendings error: Error: ", err));
+      .catch((err) => console.log('Fetch to /spendings error: Error: ', err));
   }
 
   delete(id) {
@@ -123,7 +123,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch("/history")
+    fetch('/history')
       .then((res) => res.json())
       .then((data) => {
         const newBudget = data.history.map((el) => {
@@ -138,7 +138,7 @@ class App extends Component {
   }
 
   updateBudgetHistory(e) {
-    fetch("/history")
+    fetch('/history')
       .then((res) => res.json())
       .then((data) => {
         const newBudget = data.history.map((el) => {
@@ -154,25 +154,25 @@ class App extends Component {
 
   render() {
     return (
-      <div id="appDiv">
-        <h2 id="welcome_statement">Hey {this.props.username}</h2>
+      <div id='appDiv'>
+        <h2 id='welcome_statement'>Hey {this.props.username}</h2>
         <Router>
-          <ul id="header">
+          <ul id='header'>
             <li>
-              <Link to="/" className="links">
+              <Link to='/' className='links'>
                 Home
               </Link>
             </li>
             {this.state.incomeToday !== 0 ? (
               <li>
-                <Link to="/spendings" className="links">
+                <Link to='/spendings' className='links'>
                   Spendings
                 </Link>
               </li>
             ) : null}
             {this.state.incomeToday !== 0 ? (
               <li>
-                <Link to="/history" className="links">
+                <Link to='/history' className='links'>
                   Previous Budgets
                 </Link>
               </li>
@@ -180,7 +180,7 @@ class App extends Component {
           </ul>
           <Route
             exact
-            path="/"
+            path='/'
             render={(props) => (
               <Main
                 {...props}
@@ -193,7 +193,7 @@ class App extends Component {
           />
           <Route
             exact
-            path="/spendings"
+            path='/spendings'
             render={(props) => (
               <Spendings
                 {...props}
@@ -212,7 +212,7 @@ class App extends Component {
           {this.state.incomeToday !== 0 ? (
             <Route
               exact
-              path="/history"
+              path='/history'
               render={(props) => (
                 <History
                   {...props}
