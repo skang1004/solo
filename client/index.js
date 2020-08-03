@@ -7,7 +7,6 @@ import Signup from "./components/Signup.jsx";
 
 render(
   <BrowserRouter>
-    {/* <App /> */}
     <Login />
   </BrowserRouter>,
   document.getElementById("root")
